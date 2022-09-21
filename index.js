@@ -2,7 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const mysqlDb = require('./mysqlDb');
 const books = require('./app/books');
-// const users = require('./app/users');
+const users = require('./app/users');
+const history = require('./app/history');
 
 const app = express();
 const port = 8006;
@@ -12,7 +13,8 @@ app.use(express.json());
 app.use(cors());
 
 app.use('/books', books);
-// app.use('/users', users);
+app.use('/users', users);
+app.use('/history', history);
 
 mysqlDb.connect();
 

@@ -20,7 +20,7 @@ create table users
     age       int          not null,
     isFree    tinyint(1)   not null,
     createdAt date         not null,
-    updatedAt date         not null
+    updatedAt date         null
 );
 
 create table history

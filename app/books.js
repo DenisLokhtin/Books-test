@@ -6,7 +6,7 @@ const dayjs = require('dayjs');
 router.get('/', async (req, res) => {
     try {
         const [books] = await mysqlDb.getConnection().query(
-            'SELECT id, title, author, createdAt FROM books'
+            'SELECT * FROM books'
         );
 
         if (!books) {
