@@ -20,9 +20,17 @@ create table users
     age       int          not null,
     isFree    tinyint(1)   not null,
     createdAt date         not null,
-    updatedAt date         not null,
-    books     int          null,
-    constraint users_books_null_fk
-        foreign key (books) references books (id)
+    updatedAt date         not null
 );
 
+create table history
+(
+    id       int auto_increment
+        primary key,
+    books_id int not null,
+    user_id  int not null,
+    constraint history_books_null_fk
+        foreign key (books_id) references books (id),
+    constraint history_users_null_fk
+        foreign key (user_id) references users (id)
+);
