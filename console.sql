@@ -36,18 +36,40 @@ create table history
 );
 
 insert into Books.books (id, title, author, createdAt)
-values (1, 'dsafg', 'sdfg', '2022-09-15'),
-       (3, '1', '1', '2022-09-16'),
-       (4, '1', '1', '2022-09-16'),
-       (5, '1', '1', '2022-09-16'),
-       (6, '5', '4', '2022-09-16'),
-       (7, '345345345', '534534', '2022-09-21'),
-       (8, '345345345', '534534', '2022-09-21');
+values (1, 'In Search of Lost Time', 'Marcel Proust', '2022-09-15'),
+       (2, 'Ulysses', 'James Joyce', '2022-09-16'),
+       (3, 'Don Quixote', 'Miguel de Cervantes', '2022-09-16'),
+       (4, 'One Hundred Years of Solitude', 'Gabriel Garcia Marquez', '2022-09-16'),
+       (5, 'To Kill a Mockingbird', 'Harper Lee', '2022-09-16'),
+       (6, 'Where the Sidewalk Ends', 'Shel Silverstein', '2022-09-21'),
+       (7, 'Valley of the Dolls', 'Jacqueline Susann', '2022-09-21'),
+       (8, 'The Shining', 'Stephen King', '2022-09-15'),
+       (9, 'The Little Prince', 'Antoine de Saint-Exupéry', '2022-09-16'),
+       (10, 'The Fellowship of the Ring', 'J.R.R. Tolkien', '2022-09-16'),
+       (11, 'The Handmaid’s Tale', 'Margaret Atwood', '2022-09-16'),
+       (12, 'A Wrinkle in Time', 'Madeleine L’Engle', '2022-09-16'),
+       (13, 'Pride and Prejudice', 'Jane Austen', '2022-09-21'),
+       (14, 'Man’s Search for Meaning', 'Viktor E. Frankl', '2022-09-21');
+
+insert into Books.users (id, firstName, lastName, age, isFree, createdAt, updatedAt)
+values (1, 'john', 'doe', 34, 0, '2022-09-21', '2022-09-21'),
+       (2, 'Leandro', 'Neville', 23, 1, '2022-09-21', '2022-09-21'),
+       (3, 'Osman', 'Buckner', 44, 0, '2022-09-21', '2022-09-21'),
+       (4, 'Connagh', 'Carpenter', 22, 1, '2022-09-21', '2022-09-21'),
+       (5, 'Dane', 'Nairn', 23, 1, '2022-09-21', '2022-09-21');
 
 insert into Books.history (id, books_id, user_id)
 values (1, 1, 1),
-       (2, 5, 1),
-       (3, 6, 1);
-
-insert into Books.users (id, firstName, lastName, age, isFree, createdAt, updatedAt)
-values (1, 'sdasd', 'goo', 15, 0, '2022-09-21', '2022-09-21');
+       (2, 2, 2),
+       (3, 3, 3),
+       (4, 4, 4),
+       (5, 5, 5),
+       (6, 6, 1),
+       (7, 7, 2),
+       (8, 8, 3),
+       (9, 9, 4),
+       (10, 10, 5),
+       (11, 11, 1),
+       (12, 12, 2),
+       (13, 13, 3),
+       (14, 14, 4);

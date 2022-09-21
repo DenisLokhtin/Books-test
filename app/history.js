@@ -8,10 +8,6 @@ router.get('/', async (req, res) => {
             'SELECT * FROM history'
         );
 
-        if (!history) {
-            return res.status(404).send('Not found');
-        }
-
         res.send(history);
     } catch (e) {
         console.log(e);

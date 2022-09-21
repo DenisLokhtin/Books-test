@@ -9,10 +9,6 @@ router.get('/', async (req, res) => {
             'SELECT * FROM users'
         );
 
-        if (!users) {
-            return res.status(404).send('Not found');
-        }
-
         res.send(users);
     } catch (e) {
         console.log(e);
@@ -22,20 +18,10 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        const [history] = await mysqlDb.getConnection().query(
-            'SELECT * FROM ?? where user_id = ?',
-            ['history', req.params.id]
+        const [books] = await mysqlDb.getConnection().query(
+            'SELECT * FROM books where id in (select books_id from history where user_id = ?)',
+            [req.params.id]
         );
-
-        const Books = [];
-
-        for (const elem of history) {
-            const [booksElem] = await mysqlDb.getConnection().query(
-                'SELECT * FROM ?? where id = ?',
-                ['books', req.params.id]
-            );
-            Books.push(booksElem[0]);
-        }
 
         const [selectedUser] = await mysqlDb.getConnection().query(
             'SELECT * FROM ?? where id = ?',
@@ -46,7 +32,7 @@ router.get('/:id', async (req, res) => {
             return res.status(404).send('Not found');
         }
 
-        res.send({...selectedUser[0], Books});
+        res.send({...selectedUser[0], books});
     } catch (e) {
         console.log(e);
         res.status(500).send('Something went wrong');

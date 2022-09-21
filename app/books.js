@@ -4,14 +4,11 @@ const mysqlDb = require('../mysqlDb');
 const dayjs = require('dayjs');
 
 router.get('/', async (req, res) => {
+    const page = req.query.page ? req.query.page * 20 : 0;
     try {
         const [books] = await mysqlDb.getConnection().query(
-            'SELECT * FROM books'
+            `SELECT * FROM books LIMIT 20 OFFSET ${page}`
         );
-
-        if (!books) {
-            return res.status(404).send('Not found');
-        }
 
         res.send(books);
     } catch (e) {
