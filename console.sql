@@ -34,3 +34,20 @@ create table history
     constraint history_users_null_fk
         foreign key (user_id) references users (id)
 );
+
+insert into Books.books (id, title, author, createdAt)
+values (1, 'dsafg', 'sdfg', '2022-09-15'),
+       (3, '1', '1', '2022-09-16'),
+       (4, '1', '1', '2022-09-16'),
+       (5, '1', '1', '2022-09-16'),
+       (6, '5', '4', '2022-09-16'),
+       (7, '345345345', '534534', '2022-09-21'),
+       (8, '345345345', '534534', '2022-09-21');
+
+insert into Books.history (id, books_id, user_id)
+values (1, 1, 1),
+       (2, 5, 1),
+       (3, 6, 1);
+
+insert into Books.users (id, firstName, lastName, age, isFree, createdAt, updatedAt)
+values (1, 'sdasd', 'goo', 15, 0, '2022-09-21', '2022-09-21');
