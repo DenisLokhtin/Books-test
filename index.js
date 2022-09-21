@@ -5,8 +5,9 @@ const books = require('./app/books');
 const users = require('./app/users');
 const history = require('./app/history');
 
+require('dotenv').config()
 const app = express();
-const port = 8006;
+const port = 8007;
 
 app.use(express.static('public'));
 app.use(express.json());

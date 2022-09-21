@@ -1,6 +1,5 @@
 const mysql = require('mysql2/promise');
 const config = require('./config');
-
 let connection = null;
 
 module.exports = {

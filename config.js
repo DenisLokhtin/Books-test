@@ -1,8 +1,11 @@
+require('dotenv').config()
+
 module.exports = {
     databaseOptions: {
-        host: 'localhost',
-        user: 'user',
-        password: 'test',
-        database: 'Books'
+        host: process.env.HOST,
+        user: process.env.TEST_USER,
+        port: process.env.PORT,
+        password: process.env.PASSWORD,
+        database: process.env.DATABASE
     }
 };
