@@ -4,11 +4,20 @@ const mysqlDb = require('../mysqlDb');
 
 router.get('/', async (req, res) => {
     try {
-        const [history] = await mysqlDb.getConnection().query(
-            'SELECT * FROM history'
-        );
+        if (req.query.all) {
+            const [historyAll] = await mysqlDb.getConnection().query(
+                `SELECT * FROM history`
+            );
+            res.send(historyAll);
+        } else {
+            const limit = req.query.limit ? req.query.limit : 10
+            const page = req.query.page ? req.query.page * limit : 0;
+            const [historyLimit] = await mysqlDb.getConnection().query(
+                `SELECT * FROM history LIMIT ${limit} OFFSET ${page}`
+            );
+            res.send(historyLimit);
+        }
 
-        res.send(history);
     } catch (e) {
         console.log(e);
         res.status(500).send('Something went wrong');

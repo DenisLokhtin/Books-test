@@ -5,11 +5,19 @@ const dayjs = require('dayjs');
 
 router.get('/', async (req, res) => {
     try {
-        const [users] = await mysqlDb.getConnection().query(
-            'SELECT * FROM users'
-        );
-
-        res.send(users);
+        if (req.query.all) {
+            const [usersAll] = await mysqlDb.getConnection().query(
+                `SELECT * FROM users`
+            );
+            res.send(usersAll);
+        } else {
+            const limit = req.query.limit ? req.query.limit : 10
+            const page = req.query.page ? req.query.page * limit : 0;
+            const [usersLimit] = await mysqlDb.getConnection().query(
+                `SELECT * FROM users LIMIT ${limit} OFFSET ${page}`
+            );
+            res.send(usersLimit);
+        }
     } catch (e) {
         console.log(e);
         res.status(500).send('Something went wrong');

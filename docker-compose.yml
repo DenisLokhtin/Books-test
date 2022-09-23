@@ -7,12 +7,13 @@ services:
     env_file:
       .env
     ports:
-      - "${DB_PORT}:${DB_PORT}"
+      - "3306:3306"
     expose:
-      - "${DB_PORT}"
+      - 3306
     volumes:
       - my-db:/var/lib/mysql
-      - ./init:/db.d
+      - ./init:/docker-entrypoint-initdb.d
+
   api:
     build: .
     depends_on:

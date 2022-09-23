@@ -4,13 +4,21 @@ const mysqlDb = require('../mysqlDb');
 const dayjs = require('dayjs');
 
 router.get('/', async (req, res) => {
-    const page = req.query.page ? req.query.page * 20 : 0;
     try {
-        const [books] = await mysqlDb.getConnection().query(
-            `SELECT * FROM books LIMIT 20 OFFSET ${page}`
-        );
+        if (req.query.all) {
+            const [booksAll] = await mysqlDb.getConnection().query(
+                `SELECT * FROM books`
+            );
+            res.send(booksAll);
+        } else {
+            const limit = req.query.limit ? req.query.limit : 10
+            const page = req.query.page ? req.query.page * limit : 0;
+            const [booksLimit] = await mysqlDb.getConnection().query(
+                `SELECT * FROM books LIMIT ${limit} OFFSET ${page}`
+            );
+            res.send(booksLimit);
+        }
 
-        res.send(books);
     } catch (e) {
         console.log(e);
         res.status(500).send('Something went wrong');
