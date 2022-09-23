@@ -4,10 +4,11 @@ const mysqlDb = require('./mysqlDb');
 const books = require('./app/books');
 const users = require('./app/users');
 const history = require('./app/history');
+require('dotenv').config()
 
 require('dotenv').config()
 const app = express();
-const port = 8007;
+const port = process.env.API_PORT;
 
 app.use(express.static('public'));
 app.use(express.json());
