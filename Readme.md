@@ -20,15 +20,29 @@ docker-compose up
 
 **Эндпоинты:**
 
-в приложении есть 3 эндпоинта:
+в приложении есть несколько эндпоинтов:
 
 ```
-http://localhost:8071/users
-http://localhost:8071/books
-http://localhost:8071/history
+GET /users
+POST /users
+GET /users/:id
+PUT /users/:id
+DELETE /users/:id
+
+GET /books
+POST /books
+GET /books/:id
+PUT /books/:id
+DELETE /books/:id
+
+GET /history
+POST /history
+GET /history/:id
+PUT /history/:id
+DELETE /history/:id
 ```
 
-Имеются методы:
+***
 
 - **GET /users**
 
